@@ -1,0 +1,35 @@
+---
+title: "Example project"
+slug: "example-project"
+description: "Placeholder case study showing how projects are written in this portfolio."
+cover: "/images/og-image.png"
+featured: false
+status: ongoing
+role: "Designer & Engineer"
+year: "2026"
+tags:
+  - "example"
+  - "portfolio"
+---
+
+This is **example content**. Replace this file or add more `.mdx` files in `content/projects/` with your own case studies.
+
+## Frontmatter
+
+Each project starts with YAML frontmatter: `title`, `slug`, `description`, `cover`, `featured`, `status`, `role`, `year`, and `tags`. See `content/projects/README.md` for the full schema.
+
+## What to write
+
+Use headings, lists, and code blocks to describe the problem, your approach, and the outcome:
+
+```ts
+export function summarize(impact: string) {
+  return `Result: ${impact}`;
+}
+```
+
+## Next steps
+
+1. Duplicate this file with a new slug and update the frontmatter.
+2. Set `featured: true` to show a project on the home page.
+3. Add real screenshots under `public/images/` and point `cover` at them.

@@ -18,4 +18,4 @@ tags:
   - "TypeScript"
 ```
 
-When you add `{slug}.mdx` files here, they appear on `/projects/` automatically. Set `featured: true` to show a project on the home page. Until then, a placeholder is shown on Home and Projects.
+Start from `example-project.mdx`. When you add or replace `{slug}.mdx` files here, they appear on `/projects/` automatically. Set `featured: true` to show a project on the home page (the home section stays on the “coming soon” placeholder until at least one project is featured).

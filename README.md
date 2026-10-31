@@ -28,7 +28,7 @@ For production, set `NEXT_PUBLIC_SITE_URL` to your deployment URL (for example `
 ## Content
 
 - Blog posts: `content/posts/*.mdx` (start from `content/posts/example-post.mdx`)
-- Projects: `content/projects/*.mdx` (see `content/projects/README.md`)
+- Projects: `content/projects/*.mdx` (start from `content/projects/example-project.mdx`)
 - About page copy: `src/config/about.ts`, skills in `src/config/skills.ts`
 - Site config: `src/config/site.ts`
 
