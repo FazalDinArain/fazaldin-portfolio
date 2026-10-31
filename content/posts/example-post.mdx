@@ -1,0 +1,32 @@
+---
+title: "Example blog post"
+slug: "example-post"
+date: "January 1, 2026"
+description: "Placeholder article showing how blog posts are written in this portfolio."
+tags:
+  - "example"
+  - "portfolio"
+cover: "/images/og-image.png"
+---
+
+This is **example content**. Replace this file or add more `.mdx` files in `content/posts/` with your own writing.
+
+## Frontmatter
+
+Each post starts with YAML frontmatter: `title`, `slug`, `date`, `description`, `tags`, and optional `cover` (path under `/images/`).
+
+## Markdown features
+
+You can use headings, lists, links, and fenced code blocks:
+
+```ts
+export function greet(name: string) {
+  return `Hello, ${name}`;
+}
+```
+
+## Next steps
+
+1. Duplicate this file with a new slug and update the frontmatter.
+2. Edit `src/config/about.ts` (and related config) for your About page.
+3. Add `content/projects/{slug}.mdx` for case studies (see `content/projects/README.md`).
