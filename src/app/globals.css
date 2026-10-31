@@ -57,6 +57,12 @@ html {
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   background-color: var(--color-bg);
+  background-image: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--color-accent) 7%, transparent) 2px,
+    transparent 2px
+  );
+  background-size: 24px 24px;
 }
 
 body {
@@ -70,23 +76,6 @@ body {
   font-size: 1rem;
   line-height: 1.5;
   background: transparent;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  background: url("/images/circuit-board.svg") repeat;
-  background-size: 304px;
-  opacity: 0.012;
-  filter: invert(1);
-  pointer-events: none;
-}
-
-[data-theme="light"] body::before {
-  filter: none;
-  opacity: 0.025;
 }
 
 @layer base {
@@ -164,7 +153,7 @@ body::before {
   }
 
   .site-nav {
-    @apply flex items-center border-b mb-4 py-4;
+    @apply flex items-center border-b py-4 mb-0;
     border-color: var(--color-border);
     background: var(--color-bg);
   }
