@@ -8,7 +8,7 @@ Add or replace portfolio projects by creating `{slug}.mdx` in this folder.
 title: "Project title"
 slug: "url-segment"
 description: "One-line summary for cards and SEO"
-cover: "/images/your-cover.webp"
+cover: "/images/placeholder-cover.svg" # or your own file under public/images/
 featured: true # shows on home with star badge
 status: ongoing # or archived
 role: "Designer & Engineer"

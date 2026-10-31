@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { Link } from "next-view-transitions";
 import Image from "next/image";
 import { getAllPostSlugs, getPostBySlug, getTotalPages } from "@/lib/posts";
+import { placeholderCoverPath } from "@/lib/paths";
 import { buildMetadata, pageUrl } from "@/lib/seo";
 import { formatPostDateLong } from "@/lib/dates";
 import { extractToc } from "@/lib/toc";
@@ -69,7 +70,7 @@ export default async function BlogSlugPage({ params }: Props) {
     description: post.description,
     datePublished: post.date,
     author: { "@type": "Person", name: site.name, url: site.url },
-    image: post.cover ? pageUrl(post.cover) : pageUrl("/images/og-image.png"),
+    image: post.cover ? pageUrl(post.cover) : pageUrl(placeholderCoverPath),
     mainEntityOfPage: pageUrl(`/blog/${slug}/`),
   };
 

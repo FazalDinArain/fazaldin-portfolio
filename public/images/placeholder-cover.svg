@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-label="Cover placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141414"/>
+      <stop offset="100%" stop-color="#1f1f1f"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <rect x="1" y="1" width="1198" height="673" fill="none" stroke="#2a2a2a" stroke-width="2"/>
+  <g fill="none" stroke="#3f3f46" stroke-width="3">
+    <rect x="470" y="237.5" width="260" height="200" rx="12"/>
+    <path d="M490 397.5 L540 337.5 L590 377.5 L650 297.5 L710 397.5"/>
+    <circle cx="545" cy="287.5" r="18" fill="#3f3f46" stroke="none"/>
+  </g>
+  <text x="600" y="520" fill="#71717a" font-family="system-ui, sans-serif" font-size="28" text-anchor="middle">Cover image</text>
+</svg>
