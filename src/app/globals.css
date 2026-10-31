@@ -698,16 +698,19 @@ body::before {
     @apply grid grid-cols-1 sm:grid-cols-2 gap-4;
   }
   .contact-channel-card {
-    @apply flex flex-col gap-2 rounded-lg border p-5 no-underline transition-[border-color,background-color];
+    @apply grid gap-x-3 gap-y-1 rounded-lg border p-5 no-underline transition-[border-color,background-color];
+    grid-template-columns: auto 1fr;
     background: var(--color-bg-secondary);
     border-color: var(--color-border);
     color: var(--color-text);
   }
   .contact-channel-row {
-    @apply flex min-w-0 items-center gap-3;
+    display: contents;
   }
   .contact-channel-icon {
     @apply flex shrink-0 items-center justify-center w-10 h-10 rounded-md;
+    grid-row: 1 / 3;
+    align-self: center;
     background: var(--color-accent-muted);
     color: var(--color-accent);
   }
@@ -718,11 +721,15 @@ body::before {
     color: var(--color-text);
   }
   .contact-channel-label {
-    @apply text-base font-semibold leading-none tracking-tight;
+    @apply text-base font-semibold leading-none tracking-tight min-w-0;
+    grid-column: 2;
+    grid-row: 1;
     color: var(--color-text);
   }
   .contact-channel-value {
-    @apply block text-[0.9375rem] font-medium leading-snug break-all pl-[3.25rem];
+    @apply block text-[0.9375rem] font-medium leading-snug break-all min-w-0;
+    grid-column: 2;
+    grid-row: 2;
     color: var(--color-text-secondary);
   }
   .contact-channel-card:hover .contact-channel-value,
