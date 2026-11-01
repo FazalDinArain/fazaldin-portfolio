@@ -9,14 +9,11 @@ export function ExperienceSection() {
           {experience.map((job) => (
             <li key={job.id} className="experience-list-item">
               <header className="experience-timeline-header">
-                <div className="min-w-0">
-                  <h3 className="resume-card-title">{job.role}</h3>
-                  <p className="resume-card-subtitle">
-                    {job.company} · {job.employmentType}
-                  </p>
-                </div>
-                <div className="resume-card-meta">
-                  <span className="resume-card-meta-highlight">
+                <div className="experience-timeline-row experience-timeline-row--title">
+                  <h3 className="resume-card-title mb-0 min-w-0">
+                    {job.role}
+                  </h3>
+                  <p className="resume-card-meta-highlight experience-timeline-dates mb-0 shrink-0">
                     {job.dateRange}
                     {job.duration ? (
                       <span className="resume-card-meta-duration">
@@ -24,8 +21,15 @@ export function ExperienceSection() {
                         {job.duration}
                       </span>
                     ) : null}
-                  </span>
-                  <span>{job.location}</span>
+                  </p>
+                </div>
+                <div className="experience-timeline-row">
+                  <p className="resume-card-subtitle mb-0 min-w-0">
+                    {job.company} · {job.employmentType}
+                  </p>
+                  <p className="experience-timeline-location mb-0 shrink-0">
+                    {job.location}
+                  </p>
                 </div>
               </header>
               <ul className="resume-card-list">

@@ -620,7 +620,23 @@ body {
     @apply mb-1;
   }
   .experience-timeline-header {
-    @apply flex flex-col gap-3 mb-4 sm:flex-row sm:items-start sm:justify-between;
+    @apply flex flex-col gap-2 mb-4;
+  }
+  .experience-timeline-row {
+    @apply flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between sm:gap-x-6;
+  }
+  .experience-timeline-row--title {
+    @apply sm:items-center;
+  }
+  .experience-timeline-row--title .resume-card-title {
+    @apply mb-0;
+  }
+  .experience-timeline-dates {
+    @apply sm:text-right;
+  }
+  .experience-timeline-location {
+    @apply text-sm sm:text-right;
+    color: var(--color-text-muted);
   }
   .experience-panel .resume-card-title {
     @apply text-xl md:text-[1.375rem] mb-1.5;
