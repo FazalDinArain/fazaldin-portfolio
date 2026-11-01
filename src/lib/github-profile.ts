@@ -7,6 +7,8 @@ export type GitHubProfile = {
   following: number;
 };
 
+import { githubApiHeaders } from "@/lib/github-api";
+
 const REVALIDATE_SECONDS = 3600;
 
 export async function fetchGitHubProfile(
@@ -16,10 +18,7 @@ export async function fetchGitHubProfile(
     const res = await fetch(
       `https://api.github.com/users/${encodeURIComponent(username)}`,
       {
-        headers: {
-          Accept: "application/vnd.github+json",
-          "User-Agent": "fazaldin-portfolio",
-        },
+        headers: githubApiHeaders(),
         next: { revalidate: REVALIDATE_SECONDS },
       },
     );
