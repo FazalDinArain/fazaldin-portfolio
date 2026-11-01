@@ -35,7 +35,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <head>
           <ThemeScript />
           <link rel="icon" href="/images/favicon.svg" type="image/svg+xml" />
-          <link rel="manifest" href="/site.webmanifest" />
           <meta name="theme-color" content={themeMeta.themeColor} />
         </head>
         <body className={`${inter.variable} ${jetbrains.variable}`}>

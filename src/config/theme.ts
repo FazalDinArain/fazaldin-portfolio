@@ -1,7 +1,7 @@
 /**
  * Hex colors for surfaces that cannot read CSS variables (OG images, meta theme-color).
  * Keep in sync with `:root` in src/app/globals.css when changing the default dark theme.
- * Also update public/site.webmanifest background_color / theme_color if needed.
+ * theme-color meta in layout.tsx uses themeMeta.themeColor below.
  */
 export const themeDark = {
   bg: "#0a0a0a",
