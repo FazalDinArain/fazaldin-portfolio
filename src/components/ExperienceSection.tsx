@@ -18,8 +18,13 @@ export function ExperienceSection() {
                 <div className="resume-card-meta">
                   <span className="resume-card-meta-highlight">
                     {job.dateRange}
+                    {job.duration ? (
+                      <span className="resume-card-meta-duration">
+                        {" | "}
+                        {job.duration}
+                      </span>
+                    ) : null}
                   </span>
-                  {job.duration ? <span>{job.duration}</span> : null}
                   <span>{job.location}</span>
                 </div>
               </header>

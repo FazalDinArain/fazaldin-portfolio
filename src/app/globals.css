@@ -663,6 +663,10 @@ body {
     @apply text-xs font-semibold uppercase tracking-wider;
     color: var(--color-accent);
   }
+  .resume-card-meta-duration {
+    @apply font-normal normal-case tracking-normal;
+    color: var(--color-text-muted);
+  }
   .resume-card-list {
     @apply list-none m-0 p-0 space-y-2.5;
   }
