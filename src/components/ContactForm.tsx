@@ -66,9 +66,6 @@ export function ContactForm() {
           <path d="M22 2 15 22 11 13 2 9 22 2z" />
         </svg>
       </button>
-      <p className="form-hint">
-        Form delivery is not connected yet. SMTP will be added soon.
-      </p>
     </form>
   );
 }

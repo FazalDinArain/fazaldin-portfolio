@@ -7,7 +7,7 @@ export const themeDark = {
   bg: "#0a0a0a",
   text: "#e5e5e5",
   textSecondary: "#a3a3a3",
-  accent: "#10b981",
+  accent: "#e5484d",
 } as const;
 
 export const themeMeta = {

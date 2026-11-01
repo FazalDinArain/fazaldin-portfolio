@@ -10,10 +10,10 @@
   --color-text-muted: #737373;
   --color-border: #262626;
   --color-border-subtle: #1f1f1f;
-  --color-accent: #10b981;
-  --color-accent-hover: #34d399;
-  --color-accent-muted: rgba(16, 185, 129, 0.15);
-  --color-accent-glow: rgba(16, 185, 129, 0.25);
+  --color-accent: #e5484d;
+  --color-accent-hover: #f2555a;
+  --color-accent-muted: rgba(229, 72, 77, 0.15);
+  --color-accent-glow: rgba(229, 72, 77, 0.25);
   --space-xs: 0.25rem;
   --space-sm: 0.5rem;
   --space-md: 1rem;
@@ -37,9 +37,9 @@
   --color-text-muted: #a3a3a3;
   --color-border: #e5e5e5;
   --color-border-subtle: #f0f0f0;
-  --color-accent: #0d9488;
-  --color-accent-hover: #0f766e;
-  --color-accent-muted: rgba(13, 148, 136, 0.1);
+  --color-accent: #e5484d;
+  --color-accent-hover: #dc3d43;
+  --color-accent-muted: rgba(229, 72, 77, 0.1);
 }
 
 @theme inline {
@@ -636,8 +636,8 @@ body {
     @apply opacity-100;
   }
   .copy-button.copied {
-    color: #3fb950;
-    border-color: rgba(63, 185, 80, 0.4);
+    color: var(--color-accent);
+    border-color: color-mix(in srgb, var(--color-accent) 40%, transparent);
   }
 
   .table-of-contents {
