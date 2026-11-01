@@ -766,10 +766,13 @@ body {
   }
 
   .section-header {
-    @apply flex items-center justify-between gap-4 mb-8;
+    @apply flex flex-nowrap items-center justify-between gap-3 mb-8;
   }
   .section-header .section-heading {
-    @apply mb-0 flex-1 min-w-0;
+    @apply mb-0 flex-1 min-w-0 text-lg sm:text-xl;
+  }
+  .section-header .arrow-link {
+    @apply shrink-0 text-xs sm:text-sm;
   }
   .card-list {
     @apply flex flex-col gap-4;
@@ -1269,9 +1272,6 @@ body {
   }
   .form-stack .btn-primary.btn-with-icon {
     @apply w-fit ml-auto;
-  }
-  .section-header {
-    @apply flex-col items-start gap-2;
   }
   .footer-container {
     @apply flex-col text-center;
