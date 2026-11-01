@@ -402,6 +402,9 @@ body {
   .github-activity-stats {
     @apply grid grid-cols-1 sm:grid-cols-2 gap-4;
   }
+  .github-activity-stats > * {
+    @apply min-w-0;
+  }
   .github-activity-stat {
     @apply block w-full h-auto max-w-full mx-auto;
   }
@@ -416,18 +419,66 @@ body {
     @apply font-semibold;
     color: var(--color-text);
   }
+  .github-contrib-scroll-outer {
+    @apply relative w-full;
+  }
   .github-contrib-scroll {
-    @apply w-full pb-1;
+    @apply w-full pb-1 overflow-x-auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+  @media (max-width: 767px) {
+    .github-contrib-scroll-outer.is-scrollable::before,
+    .github-contrib-scroll-outer.is-scrollable::after {
+      content: "";
+      @apply absolute top-0 bottom-1 w-7 pointer-events-none z-[1];
+      transition: opacity 0.2s ease;
+    }
+    .github-contrib-scroll-outer.is-scrollable::before {
+      left: 0;
+      background: linear-gradient(
+        to right,
+        var(--color-bg-secondary) 15%,
+        transparent
+      );
+    }
+    .github-contrib-scroll-outer.is-scrollable::after {
+      right: 0;
+      background: linear-gradient(
+        to left,
+        var(--color-bg-secondary) 15%,
+        transparent
+      );
+    }
+    .github-contrib-scroll-outer.is-scrollable.is-at-start::before {
+      opacity: 0;
+    }
+    .github-contrib-scroll-outer.is-scrollable.is-at-end::after {
+      opacity: 0;
+    }
   }
   .github-contrib-grid {
-    @apply flex gap-[3px] w-full;
+    @apply flex gap-[3px] w-max min-w-full;
   }
   .github-contrib-week {
-    @apply flex flex-col gap-[3px] flex-1 min-w-0;
+    @apply flex flex-col gap-[3px] shrink-0;
   }
   .github-contrib-grid .github-contrib-cell {
-    @apply block w-full aspect-square rounded-[2px];
+    @apply block rounded-[2px];
+    width: 11px;
+    height: 11px;
     background: var(--github-contrib-0);
+  }
+  @media (min-width: 768px) {
+    .github-contrib-grid {
+      @apply w-full;
+    }
+    .github-contrib-week {
+      @apply flex-1 min-w-0;
+    }
+    .github-contrib-grid .github-contrib-cell {
+      @apply w-full h-auto aspect-square;
+    }
   }
   .github-contrib-legend .github-contrib-cell {
     @apply w-[11px] h-[11px] shrink-0 aspect-auto;
@@ -454,10 +505,10 @@ body {
     border-color: var(--color-border);
   }
   .github-streak-stats-card {
-    @apply items-center justify-center min-h-0;
+    @apply items-center justify-center min-h-0 overflow-hidden;
   }
   .github-streak-stats-card .github-activity-stat {
-    @apply mx-0;
+    @apply mx-0 w-full h-auto max-w-full object-contain;
   }
   .github-profile-stats-header {
     @apply mb-4 pb-4 border-b;
@@ -479,7 +530,7 @@ body {
     color: var(--color-text-muted);
   }
   .github-profile-stat dd {
-    @apply text-xl font-semibold m-0 tabular-nums;
+    @apply text-2xl sm:text-xl font-semibold m-0 tabular-nums;
     color: var(--color-text);
   }
   .experience-list {

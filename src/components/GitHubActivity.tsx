@@ -47,13 +47,13 @@ export async function GitHubActivity() {
           <ContributionCalendar days={contributions.days} total={total} />
         ) : null}
         <div className="github-activity-stats">
+          <GitHubStreakStats username={username} />
           {profile ? (
             <GitHubProfileStatsCard
               profile={profile}
               totalContributions={total}
             />
           ) : null}
-          <GitHubStreakStats username={username} />
         </div>
       </div>
     </section>

@@ -2,6 +2,7 @@ import {
   buildContributionWeeks,
   type ContributionDay,
 } from "@/lib/github-contributions";
+import { ContributionGraphScroll } from "@/components/ContributionGraphScroll";
 
 type Props = {
   days: ContributionDay[];
@@ -16,11 +17,11 @@ export function ContributionCalendar({ days, total }: Props) {
       <p className="github-contrib-summary">
         <strong>{total.toLocaleString()}</strong> contributions in the last year
       </p>
-      <div className="github-contrib-scroll">
+      <ContributionGraphScroll>
         <div
           className="github-contrib-grid"
           role="img"
-          aria-label={`${total} GitHub contributions in the last year`}
+          aria-label={`${total} GitHub contributions in the last year. Scroll horizontally on small screens to see the full year.`}
         >
           {weeks.map((week, weekIndex) => (
             <div
@@ -38,7 +39,7 @@ export function ContributionCalendar({ days, total }: Props) {
             </div>
           ))}
         </div>
-      </div>
+      </ContributionGraphScroll>
       <div className="github-contrib-legend" aria-hidden>
         <span>Less</span>
         <span className="github-contrib-cell" data-level={0} />
