@@ -26,6 +26,11 @@
   --border-radius-sm: 0.25rem;
   --transition-fast: 0.15s ease;
   --transition-base: 0.2s ease;
+  --github-contrib-0: #161b22;
+  --github-contrib-1: #0e4429;
+  --github-contrib-2: #006d32;
+  --github-contrib-3: #26a641;
+  --github-contrib-4: #39d353;
 }
 
 [data-theme="light"] {
@@ -40,6 +45,11 @@
   --color-accent: #e5484d;
   --color-accent-hover: #dc3d43;
   --color-accent-muted: rgba(229, 72, 77, 0.1);
+  --github-contrib-0: #ebedf0;
+  --github-contrib-1: #9be9a8;
+  --github-contrib-2: #40c463;
+  --github-contrib-3: #30a14e;
+  --github-contrib-4: #216e39;
 }
 
 @theme inline {
@@ -380,6 +390,97 @@ body {
     @apply rounded-lg border p-5 md:p-8;
     background: var(--color-bg-secondary);
     border-color: var(--color-border);
+  }
+  .github-activity-panel {
+    @apply rounded-lg border p-4 md:p-6 flex flex-col gap-4;
+    background: var(--color-bg-secondary);
+    border-color: var(--color-border);
+  }
+  .github-activity-graph {
+    @apply block w-full h-auto max-w-full;
+  }
+  .github-activity-stats {
+    @apply grid grid-cols-1 sm:grid-cols-2 gap-4;
+  }
+  .github-activity-stat {
+    @apply block w-full h-auto max-w-full mx-auto;
+  }
+  .github-contrib-calendar {
+    @apply flex flex-col gap-3;
+  }
+  .github-contrib-summary {
+    @apply text-sm m-0;
+    color: var(--color-text-secondary);
+  }
+  .github-contrib-summary strong {
+    @apply font-semibold;
+    color: var(--color-text);
+  }
+  .github-contrib-scroll {
+    @apply w-full pb-1;
+  }
+  .github-contrib-grid {
+    @apply flex gap-[3px] w-full;
+  }
+  .github-contrib-week {
+    @apply flex flex-col gap-[3px] flex-1 min-w-0;
+  }
+  .github-contrib-grid .github-contrib-cell {
+    @apply block w-full aspect-square rounded-[2px];
+    background: var(--github-contrib-0);
+  }
+  .github-contrib-legend .github-contrib-cell {
+    @apply w-[11px] h-[11px] shrink-0 aspect-auto;
+  }
+  .github-contrib-cell[data-level="1"] {
+    background: var(--github-contrib-1);
+  }
+  .github-contrib-cell[data-level="2"] {
+    background: var(--github-contrib-2);
+  }
+  .github-contrib-cell[data-level="3"] {
+    background: var(--github-contrib-3);
+  }
+  .github-contrib-cell[data-level="4"] {
+    background: var(--github-contrib-4);
+  }
+  .github-contrib-legend {
+    @apply flex items-center gap-1 text-xs;
+    color: var(--color-text-muted);
+  }
+  .github-stats-card {
+    @apply rounded-lg border p-5 h-full flex flex-col justify-center;
+    background: var(--color-bg);
+    border-color: var(--color-border);
+  }
+  .github-streak-stats-card {
+    @apply items-center justify-center min-h-0;
+  }
+  .github-streak-stats-card .github-activity-stat {
+    @apply mx-0;
+  }
+  .github-profile-stats-header {
+    @apply mb-4 pb-4 border-b;
+    border-color: var(--color-border);
+  }
+  .github-profile-stats-name {
+    @apply text-base font-semibold m-0 mb-1;
+    color: var(--color-text);
+  }
+  .github-profile-stats-bio {
+    @apply text-sm m-0 leading-snug;
+    color: var(--color-text-secondary);
+  }
+  .github-profile-stats-grid {
+    @apply grid grid-cols-2 gap-4 m-0;
+  }
+  .github-profile-stat dt {
+    @apply text-xs font-medium uppercase tracking-wide mb-1;
+    color: var(--color-text-muted);
+  }
+  .github-profile-stat dd {
+    @apply text-xl font-semibold m-0 tabular-nums;
+    color: var(--color-text);
   }
   .experience-list {
     @apply list-none m-0 p-0;
