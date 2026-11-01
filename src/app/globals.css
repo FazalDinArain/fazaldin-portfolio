@@ -692,6 +692,75 @@ body {
   .article {
     @apply max-w-[1100px] mx-auto py-8 px-6;
   }
+  .article-cover {
+    @apply relative w-full overflow-hidden rounded-xl border mb-10;
+    aspect-ratio: 21 / 9;
+    border-color: var(--color-border);
+    background: var(--color-bg-secondary);
+  }
+  .article--case-study .article-header {
+    @apply mb-8 pb-0 border-0;
+  }
+  .case-study-lead {
+    color: var(--color-text-secondary);
+    max-width: 42rem;
+    line-height: 1.6;
+  }
+  .case-study-content > h2 {
+    @apply scroll-mt-24;
+  }
+  .case-study-content > h2:not(:first-child) {
+    @apply pt-10 mt-14 border-t;
+    border-color: var(--color-border);
+  }
+  .case-study-content > h3 {
+    @apply scroll-mt-24 text-[1.125rem] font-semibold uppercase tracking-wide;
+    color: var(--color-text-secondary);
+  }
+  .article-content a {
+    @apply font-medium underline underline-offset-[3px] decoration-1;
+    color: var(--color-accent);
+    text-decoration-color: color-mix(in srgb, var(--color-accent) 45%, transparent);
+  }
+  .article-content a:hover {
+    text-decoration-color: var(--color-accent);
+  }
+  .article-content hr {
+    @apply my-12 border-0 border-t;
+    border-color: var(--color-border);
+  }
+  .article-content table {
+    @apply w-full my-8 text-[0.9375rem] border-collapse overflow-hidden rounded-lg border;
+    border-color: var(--color-border);
+  }
+  .article-content thead {
+    background: var(--color-bg-secondary);
+  }
+  .article-content th,
+  .article-content td {
+    @apply py-3 px-4 text-left align-top border-b;
+    border-color: var(--color-border);
+    color: var(--color-text-secondary);
+  }
+  .article-content th {
+    @apply font-semibold;
+    color: var(--color-text);
+  }
+  .article-content tbody tr:last-child td {
+    @apply border-b-0;
+  }
+  .case-study-content blockquote {
+    @apply my-8 py-4 px-6 not-italic rounded-lg border text-base border-l-4;
+    border-color: color-mix(in srgb, var(--color-accent) 35%, var(--color-border));
+    background: color-mix(in srgb, var(--color-accent) 8%, var(--color-bg-secondary));
+  }
+  .case-study-content > blockquote:first-child {
+    @apply mt-0;
+  }
+  .case-study-content blockquote p {
+    @apply mb-0;
+    color: var(--color-text);
+  }
   .article-header {
     @apply mb-12 pb-8 border-b;
     border-color: var(--color-border);

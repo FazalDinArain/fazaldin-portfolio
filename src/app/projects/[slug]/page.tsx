@@ -1,10 +1,10 @@
 import { notFound } from "next/navigation";
-import { Link } from "next-view-transitions";
 import Image from "next/image";
 import { getAllProjectSlugs, getProjectBySlug } from "@/lib/projects";
 import { buildMetadata } from "@/lib/seo";
+import { extractToc } from "@/lib/toc";
 import { MarkdownContent } from "@/components/MarkdownContent";
-import { ArrowLink } from "@/components/ArrowLink";
+import { TableOfContents } from "@/components/TableOfContents";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -28,31 +28,48 @@ export default async function ProjectPage({ params }: Props) {
   const project = getProjectBySlug(slug);
   if (!project) notFound();
 
+  const toc = extractToc(project.content);
+
   return (
-    <article className="article">
+    <article className="article article--case-study">
       {project.cover ? (
-        <div className="article-cover rounded-lg overflow-hidden mb-10">
-          <Image src={project.cover} alt="" width={800} height={450} priority />
+        <div className="article-cover">
+          <Image
+            src={project.cover}
+            alt=""
+            fill
+            priority
+            sizes="(max-width: 1100px) 100vw, 1100px"
+            className="object-cover"
+          />
         </div>
       ) : null}
       <header className="article-header">
-        <p className="card-meta mb-2">
-          {project.role} · {project.year}
-        </p>
+        <div className="flex flex-wrap items-center gap-3 mb-3">
+          <p className="card-meta mb-0">
+            {project.role} · {project.year}
+          </p>
+          {project.status === "ongoing" ? (
+            <span className="status-badge status--ongoing">Ongoing</span>
+          ) : null}
+        </div>
         <h1>{project.title}</h1>
-        <p className="text-lg" style={{ color: "var(--color-text-secondary)" }}>
-          {project.description}
-        </p>
+        <p className="text-lg case-study-lead">{project.description}</p>
+        {project.tags.length > 0 ? (
+          <div className="tags-list mt-5">
+            {project.tags.map((tag) => (
+              <span key={tag} className="tag">
+                {tag}
+              </span>
+            ))}
+          </div>
+        ) : null}
       </header>
-      <MarkdownContent content={project.content} />
-      <div className="mt-12 flex gap-6">
-        <ArrowLink href="/projects/" variant="muted">
-          All projects
-        </ArrowLink>
-        <Link href="/contact/" className="btn-primary">
-          Get in Touch
-        </Link>
-      </div>
+      {toc.length > 0 ? <TableOfContents items={toc} /> : null}
+      <MarkdownContent
+        content={project.content}
+        className="article-content case-study-content"
+      />
     </article>
   );
 }
