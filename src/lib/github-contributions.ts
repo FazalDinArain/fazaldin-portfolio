@@ -31,7 +31,7 @@ export function sumContributionTotals(total: Record<string, number>): number {
   return Object.values(total).reduce((sum, n) => sum + n, 0);
 }
 
-/** Last ~53 weeks, columns are weeks (Sun–Sat), rows are weekdays. */
+/** Last ~53 weeks; each column is Mon–Sun (Mon top, Sun bottom). */
 export function buildContributionWeeks(
   days: ContributionDay[],
   weeks = 53,
@@ -42,7 +42,7 @@ export function buildContributionWeeks(
 
   const start = new Date(end);
   start.setUTCDate(start.getUTCDate() - weeks * 7 + 1);
-  while (start.getUTCDay() !== 0) {
+  while (start.getUTCDay() !== 1) {
     start.setUTCDate(start.getUTCDate() - 1);
   }
 
@@ -79,15 +79,15 @@ const MONTH_SHORT = [
   "Dec",
 ] as const;
 
-/** Mon / Wed / Fri beside rows (Sun = index 0), matching GitHub. */
+/** Mon / Wed / Fri / Sun beside rows (Mon = index 0, Sun = index 6). */
 export const CONTRIBUTION_WEEKDAY_LABELS = [
-  "",
   "Mon",
   "",
   "Wed",
   "",
   "Fri",
   "",
+  "Sun",
 ] as const;
 
 /** One label per week column; null when GitHub would leave the slot empty. */
