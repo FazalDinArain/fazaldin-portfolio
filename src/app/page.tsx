@@ -68,13 +68,6 @@ export default function HomePage() {
             <Link href="/contact/" className="btn-secondary">
               Get in Touch
             </Link>
-            <a
-              href={site.cvUrl}
-              download
-              className="btn-secondary"
-            >
-              Download CV
-            </a>
           </div>
         </section>
         <GitHubActivity />

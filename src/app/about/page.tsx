@@ -1,5 +1,4 @@
 import { about } from "@/config/about";
-import { site } from "@/config/site";
 import { skillCategories } from "@/config/skills";
 import { buildMetadata } from "@/lib/seo";
 import { ExperienceSection } from "@/components/ExperienceSection";
@@ -30,11 +29,6 @@ export default function AboutPage() {
             </p>
           ))}
         </div>
-        <p className="mt-6 mb-0">
-          <a href={site.cvUrl} download className="btn-secondary">
-            Download CV
-          </a>
-        </p>
       </header>
 
       <section className="skills-section mb-12" aria-label="Technologies">

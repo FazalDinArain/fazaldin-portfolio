@@ -18,6 +18,12 @@ export function SiteFooter() {
           <a href={site.linkedin} target="_blank" rel="noopener noreferrer">
             LinkedIn
           </a>
+          <span className="separator" aria-hidden>
+            &middot;
+          </span>
+          <a href={site.cvUrl} download>
+            CV
+          </a>
         </div>
       </div>
     </footer>
