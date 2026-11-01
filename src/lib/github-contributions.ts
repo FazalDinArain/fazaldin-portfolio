@@ -64,6 +64,61 @@ export function buildContributionWeeks(
   return columns;
 }
 
+const MONTH_SHORT = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+] as const;
+
+/** Mon / Wed / Fri beside rows (Sun = index 0), matching GitHub. */
+export const CONTRIBUTION_WEEKDAY_LABELS = [
+  "",
+  "Mon",
+  "",
+  "Wed",
+  "",
+  "Fri",
+  "",
+] as const;
+
+/** One label per week column; null when GitHub would leave the slot empty. */
+export function buildContributionMonthLabels(
+  weeks: ContributionDay[][],
+): (string | null)[] {
+  return weeks.map((week, weekIndex) => {
+    if (week.length === 0) return null;
+
+    for (const day of week) {
+      const d = parseUtcDate(day.date);
+      if (d.getUTCDate() === 1) {
+        return MONTH_SHORT[d.getUTCMonth()];
+      }
+    }
+
+    if (weekIndex === 0) {
+      return MONTH_SHORT[parseUtcDate(week[0].date).getUTCMonth()];
+    }
+
+    const first = parseUtcDate(week[0].date);
+    const prevWeek = weeks[weekIndex - 1];
+    const prevLast = parseUtcDate(prevWeek[prevWeek.length - 1].date);
+    if (first.getUTCMonth() !== prevLast.getUTCMonth()) {
+      return MONTH_SHORT[first.getUTCMonth()];
+    }
+
+    return null;
+  });
+}
+
 function parseUtcDate(isoDate: string): Date {
   const [y, m, d] = isoDate.split("-").map(Number);
   return new Date(Date.UTC(y, m - 1, d));

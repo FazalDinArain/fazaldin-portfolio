@@ -427,6 +427,11 @@ body {
     -webkit-overflow-scrolling: touch;
     scrollbar-width: thin;
   }
+  @media (min-width: 768px) {
+    .github-contrib-scroll {
+      overflow-x: hidden;
+    }
+  }
   @media (max-width: 767px) {
     .github-contrib-scroll-outer.is-scrollable::before,
     .github-contrib-scroll-outer.is-scrollable::after {
@@ -457,8 +462,37 @@ body {
       opacity: 0;
     }
   }
+  .github-contrib-graph-inner {
+    @apply flex gap-1 w-full max-w-full min-w-0;
+  }
+  .github-contrib-label-col {
+    @apply flex flex-col gap-[3px] shrink-0 self-stretch sticky left-0 z-[2];
+    background: var(--color-bg-secondary);
+  }
+  .github-contrib-month-spacer {
+    @apply shrink-0 h-[14px];
+  }
+  .github-contrib-week--labels {
+    @apply flex flex-col gap-[3px] flex-1 min-h-0 w-[26px];
+  }
+  .github-contrib-day-label {
+    @apply flex items-center justify-end pr-0.5 text-[10px] leading-none shrink-0;
+    height: 11px;
+    color: var(--color-text-muted);
+  }
+  .github-contrib-graph-main {
+    @apply flex flex-col gap-[3px] flex-1 min-w-0;
+  }
+  .github-contrib-month-row {
+    @apply flex gap-[3px] w-full min-w-0 shrink-0 h-[14px] overflow-hidden;
+  }
+  .github-contrib-month-col {
+    @apply shrink-0 min-w-0 text-[10px] leading-[14px] overflow-hidden whitespace-nowrap;
+    width: 11px;
+    color: var(--color-text-muted);
+  }
   .github-contrib-grid {
-    @apply flex gap-[3px] w-max min-w-full;
+    @apply flex gap-[3px] w-full min-w-0;
   }
   .github-contrib-week {
     @apply flex flex-col gap-[3px] shrink-0;
@@ -469,15 +503,29 @@ body {
     height: 11px;
     background: var(--github-contrib-0);
   }
-  @media (min-width: 768px) {
+  @media (max-width: 767px) {
+    .github-contrib-graph-inner {
+      @apply w-max min-w-full;
+    }
+    .github-contrib-month-row {
+      @apply w-max min-w-full;
+    }
     .github-contrib-grid {
-      @apply w-full;
+      @apply w-max min-w-full;
+    }
+  }
+  @media (min-width: 768px) {
+    .github-contrib-month-col {
+      @apply flex-1 min-w-0;
     }
     .github-contrib-week {
       @apply flex-1 min-w-0;
     }
     .github-contrib-grid .github-contrib-cell {
       @apply w-full h-auto aspect-square;
+    }
+    .github-contrib-week--labels .github-contrib-day-label {
+      @apply flex-1 min-h-0 h-auto shrink;
     }
   }
   .github-contrib-legend .github-contrib-cell {
