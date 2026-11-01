@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { ViewTransitions } from "next-view-transitions";
 import { SiteHeader } from "@/components/SiteHeader";
+import { SiteBottomNav } from "@/components/SiteBottomNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ThemeScript } from "@/components/ThemeScript";
 import { site } from "@/config/site";
@@ -46,6 +47,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             {children}
           </main>
           <SiteFooter />
+          <SiteBottomNav />
         </body>
       </html>
     </ViewTransitions>

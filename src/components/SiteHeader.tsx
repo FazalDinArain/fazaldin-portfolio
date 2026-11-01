@@ -2,30 +2,19 @@
 
 import { Link } from "next-view-transitions";
 import { usePathname } from "next/navigation";
+import { mainNavLinks, isNavActive } from "@/config/nav";
 import { ThemeToggle } from "@/components/ThemeToggle";
-
-const links = [
-  { href: "/", label: "Home" },
-  { href: "/about/", label: "About" },
-  { href: "/projects/", label: "Projects" },
-  { href: "/contact/", label: "Contact" },
-];
-
-function isActive(pathname: string, href: string): boolean {
-  if (href === "/") return pathname === "/" || pathname === "";
-  return pathname.startsWith(href.replace(/\/$/, ""));
-}
 
 export function SiteHeader() {
   const pathname = usePathname();
 
   return (
     <header className="site-header">
-      <nav className="site-nav" aria-label="Main navigation">
-        <div className="nav-scroll">
+      <div className="site-nav max-md:justify-end max-md:py-3">
+        <nav className="nav-scroll max-md:hidden" aria-label="Main navigation">
           <ul className="nav-list">
-            {links.map(({ href, label }) => {
-              const active = isActive(pathname, href);
+            {mainNavLinks.map(({ href, label }) => {
+              const active = isNavActive(pathname, href);
               return (
                 <li key={href} className="nav-item">
                   <Link
@@ -39,11 +28,11 @@ export function SiteHeader() {
               );
             })}
           </ul>
-        </div>
-        <div className="nav-end">
+        </nav>
+        <div className="nav-end max-md:border-l-0 max-md:px-4">
           <ThemeToggle />
         </div>
-      </nav>
+      </div>
     </header>
   );
 }
