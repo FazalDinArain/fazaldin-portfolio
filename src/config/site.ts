@@ -6,6 +6,7 @@ export const site = {
   phone: "+923033833081",
   github: "https://github.com/FazalDinBidec",
   linkedin: "https://linkedin.com/in/fazaldin-arain",
+  cvUrl: "/FazalDinArainCV.pdf",
   hero: {
     greeting: "Hi, I'm FazalDin",
     headline: "Software Engineer",
