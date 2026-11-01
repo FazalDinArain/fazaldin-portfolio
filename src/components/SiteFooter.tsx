@@ -8,15 +8,17 @@ export function SiteFooter() {
         <span className="copyright">
           &copy; {year} {site.name}
         </span>
-        {/* <div className="footer-social">
+        <div className="footer-social">
           <a href={site.github} target="_blank" rel="noopener noreferrer">
-            Github
+            GitHub
           </a>
-          <span className="separator">&middot;</span>
+          <span className="separator" aria-hidden>
+            &middot;
+          </span>
           <a href={site.linkedin} target="_blank" rel="noopener noreferrer">
-            Linkedin
+            LinkedIn
           </a>
-        </div> */}
+        </div>
       </div>
     </footer>
   );
