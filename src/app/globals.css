@@ -1333,10 +1333,6 @@ body {
     margin-inline: auto;
   }
 
-  #main-content {
-    padding-bottom: calc(4.25rem + env(safe-area-inset-bottom, 0px));
-  }
-
   .site-footer {
     padding-bottom: calc(2rem + 4.25rem + env(safe-area-inset-bottom, 0px));
   }

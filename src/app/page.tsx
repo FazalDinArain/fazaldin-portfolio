@@ -72,7 +72,7 @@ export default function HomePage() {
         </section>
         <GitHubActivity />
         <section
-          className="featured-projects mb-20"
+          className="featured-projects"
           aria-label="Featured projects"
         >
           <div className="section-header">
