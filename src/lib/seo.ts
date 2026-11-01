@@ -15,6 +15,15 @@ export function pageUrl(path = ""): string {
   return `${base}${p}${p.endsWith("/") ? "" : "/"}`;
 }
 
+/** Route-level OG image from Next.js `opengraph-image` convention. */
+export function openGraphImageUrl(path = "/"): string {
+  if (path === "/" || path === "") {
+    return pageUrl("/opengraph-image");
+  }
+  const base = path.replace(/\/$/, "");
+  return pageUrl(`${base}/opengraph-image`);
+}
+
 export function buildMetadata({
   title,
   description = site.defaultDescription,
@@ -24,7 +33,7 @@ export function buildMetadata({
 }: PageMeta): Metadata {
   const fullTitle = noSuffix ? title : `${title} | ${site.name}`;
   const url = pageUrl(path);
-  const ogImage = pageUrl("/opengraph-image");
+  const ogImage = openGraphImageUrl(path);
 
   return {
     title: fullTitle,

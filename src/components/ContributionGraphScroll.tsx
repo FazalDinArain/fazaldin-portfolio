@@ -25,14 +25,24 @@ export function ContributionGraphScroll({ children }: Props) {
     const el = scrollRef.current;
     if (!el) return;
 
-    el.scrollLeft = el.scrollWidth - el.clientWidth;
-    updateEdges();
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const scrollToLatest = () => {
+      if (!motionQuery.matches) {
+        el.scrollLeft = el.scrollWidth - el.clientWidth;
+      }
+      updateEdges();
+    };
 
+    scrollToLatest();
+
+    const onMotionChange = () => scrollToLatest();
+    motionQuery.addEventListener("change", onMotionChange);
     el.addEventListener("scroll", updateEdges, { passive: true });
     const ro = new ResizeObserver(updateEdges);
     ro.observe(el);
 
     return () => {
+      motionQuery.removeEventListener("change", onMotionChange);
       el.removeEventListener("scroll", updateEdges);
       ro.disconnect();
     };

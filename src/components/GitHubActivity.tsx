@@ -13,11 +13,8 @@ export async function GitHubActivity() {
     fetchGitHubProfile(username),
   ]);
 
-  if (!contributions && !profile) {
-    return null;
-  }
-
   const total = contributions?.total ?? 0;
+  const fullyUnavailable = !contributions && !profile;
 
   return (
     <section className="mb-12" aria-label="GitHub activity">
@@ -43,18 +40,38 @@ export async function GitHubActivity() {
         </a>
       </div>
       <div className="github-activity-panel">
-        {contributions ? (
-          <ContributionCalendar days={contributions.days} total={total} />
-        ) : null}
-        <div className="github-activity-stats">
-          <GitHubStreakStats username={username} />
-          {profile ? (
-            <GitHubProfileStatsCard
-              profile={profile}
-              totalContributions={total}
-            />
-          ) : null}
-        </div>
+        {fullyUnavailable ? (
+          <p className="github-activity-fallback">
+            GitHub stats are temporarily unavailable. View my profile on{" "}
+            <a href={site.github} target="_blank" rel="noopener noreferrer">
+              GitHub
+            </a>
+            .
+          </p>
+        ) : (
+          <>
+            {contributions ? (
+              <ContributionCalendar days={contributions.days} total={total} />
+            ) : (
+              <p className="github-activity-fallback github-activity-fallback--inline">
+                Contribution graph is temporarily unavailable.
+              </p>
+            )}
+            <div className="github-activity-stats">
+              <GitHubStreakStats username={username} />
+              {profile ? (
+                <GitHubProfileStatsCard
+                  profile={profile}
+                  totalContributions={total}
+                />
+              ) : (
+                <p className="github-activity-fallback github-activity-fallback--inline">
+                  Profile stats are temporarily unavailable.
+                </p>
+              )}
+            </div>
+          </>
+        )}
       </div>
     </section>
   );

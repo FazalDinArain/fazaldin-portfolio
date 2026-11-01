@@ -403,6 +403,20 @@ body {
     background: var(--color-bg-secondary);
     border-color: var(--color-border);
   }
+  .github-activity-fallback {
+    @apply text-sm m-0;
+    color: var(--color-text-secondary);
+  }
+  .github-activity-fallback a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .github-activity-fallback--inline {
+    @apply rounded-md border px-4 py-6 text-center;
+    border-color: var(--color-border);
+    background: var(--color-bg);
+  }
   .github-activity-graph {
     @apply block w-full h-auto max-w-full;
   }

@@ -7,7 +7,8 @@ export const contentType = "image/png";
 
 export default function Image() {
   return OgLayout({
-    title: site.title,
-    subtitle: site.defaultDescription,
+    title: `${site.hero.greeting} — ${site.hero.headline}`,
+    subtitle: site.hero.subtitle,
+    tags: site.hero.tags,
   });
 }
