@@ -2,7 +2,7 @@
 title: "Bombay Choc n Nuts"
 slug: "bombay-choc-n-nuts"
 description: "Full-stack e-commerce for a premium dry-fruit and gourmet gifting brand — storefront, admin, inventory, accounting, and Pakistan-local payments & logistics."
-cover: "/images/projects/bombay-choc-n-nuts-cover.png"
+cover: "/images/projects/bombay/home-cover.png"
 featured: true
 status: ongoing
 role: "Full-stack Engineer"
@@ -37,36 +37,85 @@ The brand sells high-trust, high-AOV products with variants, gift packages, and 
 A **modular monolith** backend exposes REST APIs for the public site and admin. The frontend is a **Next.js App Router** application: public catalog and checkout on one side, a protected admin area on the other, sharing auth and API clients.
 
 ```mermaid
-flowchart LR
-  subgraph client [Next.js storefront and admin]
-    Shop[Catalog cart checkout]
-    Admin[Admin panel]
+flowchart TB
+  subgraph fe[" Next.js — single app "]
+    direction LR
+    shop["Storefront<br/>Catalog · cart · checkout · accounts"]
+    admin["Protected admin<br/>Merchandising · fulfillment · finance"]
   end
-  subgraph api [NestJS API]
-    Orders[Orders and payments]
-    Catalog[Products categories collections]
-    Ops[Stock procurement accounting]
-    Integrations[PostEx HBL Pay email queues]
+
+  subgraph api[" NestJS modular monolith "]
+    direction TB
+    subgraph commerce[" Commerce "]
+      direction LR
+      ord["Orders & checkout"]
+      pay["Payments · returns"]
+    end
+    subgraph catalog[" Catalog & CMS "]
+      direction LR
+      prod["Products · packages · baskets"]
+      cms["Content · SEO · reviews"]
+    end
+    subgraph ops[" Back office "]
+      direction LR
+      stk["Stock · procurement"]
+      acc["Accounting · vouchers"]
+    end
   end
-  DB[(PostgreSQL)]
-  Shop --> Orders
-  Shop --> Catalog
-  Admin --> Catalog
-  Admin --> Ops
-  Admin --> Integrations
-  Orders --> DB
-  Catalog --> DB
-  Ops --> DB
-  Integrations --> Orders
+
+  subgraph platform[" Platform "]
+    direction LR
+    db[("PostgreSQL")]
+    async["Bull queues · scheduled jobs"]
+    mail["Transactional email"]
+  end
+
+  subgraph external[" Pakistan integrations "]
+    direction LR
+    postex["PostEx logistics"]
+    hbl["HBL Pay"]
+  end
+
+  shop --> ord
+  shop --> prod
+  shop --> cms
+  admin --> prod
+  admin --> cms
+  admin --> ord
+  admin --> stk
+  admin --> acc
+  admin --> postex
+
+  ord --> pay
+  ord --> db
+  prod --> db
+  stk --> db
+  acc --> db
+  pay --> hbl
+  ord --> postex
+  ord --> async
+  ord --> mail
+
+  classDef box stroke-width:0px,rx:6,ry:6
+  class shop,admin,ord,pay,prod,cms,stk,acc,db,async,mail,postex,hbl box
 ```
 
 ## What I built
 
 ### Customer experience
 
-Storefront flows for discovery, trust, and checkout on mobile and desktop.
+Storefront flows for discovery, trust, and checkout on mobile and desktop. The hero cover above is from the live homepage (corporate gifting, category nav, and rotating banners).
+
+![Product catalog listing](/images/projects/bombay/products-desktop.png)
+
+*Product listing with filters, variants, and add-to-cart across categories.*
+
+![Ready-made and custom gift baskets](/images/projects/bombay/ready-made-baskets.png)
+
+*Gift baskets — empty shells, curated ready-made hampers, or build-your-own within capacity limits.*
 
 - Category, brand, and collection browsing with product detail, variants, and wishlists
+- **Gift baskets** with three modes: **empty** (container only), **ready** (pre-filled hampers), and **custom** (shoppers pick items up to the basket’s capacity)
 - Cart and checkout with idempotent order placement and payment-token flows for online pay
 - Account area: order history, track order, security settings
 - Content pages: about, corporate gifting, blog, FAQ, shipping, returns, contact

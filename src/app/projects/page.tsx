@@ -23,8 +23,12 @@ export default function ProjectsPage() {
       </header>
       <div className="card-list">
         {projects.length > 0 ? (
-          projects.map((p) => (
-            <ProjectCard key={p.slug} project={p} />
+          projects.map((p, index) => (
+            <ProjectCard
+              key={p.slug}
+              project={p}
+              priorityImage={index === 0}
+            />
           ))
         ) : (
           <ProjectsPlaceholder />

@@ -466,7 +466,8 @@ body {
     @apply -mx-7 -mt-6 mb-5 overflow-hidden rounded-t-lg;
   }
   .card-cover img {
-    @apply w-full aspect-video object-cover;
+    @apply w-full h-auto max-w-full;
+    object-fit: contain;
   }
 
   .arrow-link {
@@ -693,10 +694,13 @@ body {
     @apply max-w-[1100px] mx-auto py-8 px-6;
   }
   .article-cover {
-    @apply relative w-full overflow-hidden rounded-xl border mb-10;
-    aspect-ratio: 21 / 9;
+    @apply w-full overflow-hidden rounded-md border mb-10;
     border-color: var(--color-border);
     background: var(--color-bg-secondary);
+  }
+  .article-cover img {
+    @apply w-full h-auto max-w-full;
+    object-fit: contain;
   }
   .article--case-study .article-header {
     @apply mb-8 pb-0 border-0;
@@ -705,6 +709,10 @@ body {
     color: var(--color-text-secondary);
     max-width: 42rem;
     line-height: 1.6;
+  }
+  .case-study-skeleton {
+    @apply animate-pulse rounded-lg;
+    background: var(--color-bg-secondary);
   }
   .case-study-content > h2 {
     @apply scroll-mt-24;
@@ -760,6 +768,82 @@ body {
   .case-study-content blockquote p {
     @apply mb-0;
     color: var(--color-text);
+  }
+  .case-study-content img {
+    @apply block w-full max-w-full h-auto my-8 rounded-md border shadow-sm;
+    object-fit: contain;
+    border-color: var(--color-border);
+    background: var(--color-bg-secondary);
+  }
+  .case-study-content img + p {
+    @apply -mt-5 mb-10 text-center text-sm leading-snug;
+    color: var(--color-text-secondary);
+  }
+  .mermaid-diagram {
+    background: var(--color-bg-secondary);
+    border-color: var(--color-border);
+    color: var(--color-text);
+  }
+  .mermaid-diagram svg {
+    @apply mx-auto max-w-full h-auto;
+  }
+  .mermaid-diagram svg .node rect,
+  .mermaid-diagram svg .node polygon,
+  .mermaid-diagram svg .node path {
+    rx: 6;
+    ry: 6;
+    stroke-width: 0;
+    fill: var(--color-bg-elevated) !important;
+  }
+  .mermaid-diagram svg .cluster > rect {
+    rx: 6;
+    ry: 6;
+    fill: var(--color-bg-secondary) !important;
+    stroke-width: 0;
+  }
+  .mermaid-diagram svg .nodeLabel,
+  .mermaid-diagram svg .node .label text,
+  .mermaid-diagram svg foreignObject div {
+    fill: var(--color-text) !important;
+    color: var(--color-text);
+  }
+  .mermaid-diagram svg .flowchart-labelBox {
+    rx: 6;
+    ry: 6;
+    stroke-width: 0;
+  }
+  .mermaid-diagram svg .cluster-label .nodeLabel,
+  .mermaid-diagram svg .cluster-label span,
+  .mermaid-diagram svg .cluster-label foreignObject div {
+    @apply font-semibold tracking-wide;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    fill: var(--color-text-secondary) !important;
+    color: var(--color-text-secondary);
+    line-height: 1.4;
+    padding: 0.25rem 0.5rem 0.625rem;
+  }
+  .mermaid-diagram svg g.cluster .cluster-label {
+    transform: translateY(2px);
+  }
+  .mermaid-diagram svg .nodeLabel,
+  .mermaid-diagram svg .label {
+    @apply leading-snug;
+    font-size: 0.8125rem;
+  }
+  .mermaid-diagram svg .edgePath path {
+    stroke-width: 1.5px;
+    stroke: color-mix(in srgb, var(--color-text-secondary) 70%, transparent);
+  }
+  .mermaid-diagram svg marker path {
+    fill: color-mix(in srgb, var(--color-text-secondary) 70%, transparent);
+  }
+  .mermaid-diagram svg .edgeLabel rect {
+    rx: 6;
+    ry: 6;
+    fill: var(--color-bg-secondary);
+    stroke-width: 0;
   }
   .article-header {
     @apply mb-12 pb-8 border-b;

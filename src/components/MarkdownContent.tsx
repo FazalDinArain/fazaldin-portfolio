@@ -14,6 +14,19 @@ export function MarkdownContent({ content, className = "article-content" }: Prop
       remarkPlugins={[remarkGfm]}
       rehypePlugins={[rehypeSlug]}
       components={{
+        img({ src, alt }) {
+          if (!src) return null;
+          return (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={src}
+              alt={alt ?? ""}
+              loading="lazy"
+              decoding="async"
+              style={{ width: "100%", height: "auto" }}
+            />
+          );
+        },
         pre({ children }) {
           const codeEl = children as ReactElement<{ children?: string; className?: string }>;
           const codeText =

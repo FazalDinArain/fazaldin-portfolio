@@ -2,7 +2,13 @@ import { Link } from "next-view-transitions";
 import Image from "next/image";
 import type { ProjectMeta } from "@/lib/projects";
 
-export function ProjectCard({ project }: { project: ProjectMeta }) {
+export function ProjectCard({
+  project,
+  priorityImage = false,
+}: {
+  project: ProjectMeta;
+  priorityImage?: boolean;
+}) {
   return (
     <Link
       href={`/projects/${project.slug}/`}
@@ -13,9 +19,12 @@ export function ProjectCard({ project }: { project: ProjectMeta }) {
           <Image
             src={project.cover}
             alt=""
-            width={720}
-            height={405}
-            loading="lazy"
+            width={1280}
+            height={720}
+            priority={priorityImage}
+            loading={priorityImage ? "eager" : "lazy"}
+            className="w-full h-auto"
+            style={{ width: "100%", height: "auto" }}
           />
         </div>
       ) : null}

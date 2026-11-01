@@ -82,7 +82,13 @@ export default function HomePage() {
           </div>
           <div className="card-list">
             {featured.length > 0 ? (
-              featured.map((p) => <ProjectCard key={p.slug} project={p} />)
+              featured.map((p, index) => (
+                <ProjectCard
+                  key={p.slug}
+                  project={p}
+                  priorityImage={index === 0}
+                />
+              ))
             ) : (
               <ProjectsPlaceholder />
             )}
