@@ -7,6 +7,7 @@ import { ProjectsPlaceholder } from "@/components/ProjectsPlaceholder";
 // import { PostRow } from "@/components/PostRow";
 import { ArrowLink } from "@/components/ArrowLink";
 import { JsonLd } from "@/components/JsonLd";
+import { GitHubActivity } from "@/components/GitHubActivity";
 
 export default function HomePage() {
   const featured = getFeaturedProjects();
@@ -69,7 +70,7 @@ export default function HomePage() {
             </Link>
           </div>
         </section>
-
+        <GitHubActivity />
         <section
           className="featured-projects mb-20"
           aria-label="Featured projects"
@@ -108,22 +109,6 @@ export default function HomePage() {
             ))}
           </div>
         </section> */}
-
-        <section className="cta" aria-label="Get in touch">
-          <h2>Let&apos;s Work Together</h2>
-          <p>
-            I&apos;m always up for challenging projects and good technical
-            conversations.
-          </p>
-          <div className="cta-buttons">
-            <Link href="/contact/" className="btn-primary">
-              Get in Touch
-            </Link>
-            <Link href="/projects/" className="btn-secondary">
-              View My Work
-            </Link>
-          </div>
-        </section>
       </div>
     </>
   );
