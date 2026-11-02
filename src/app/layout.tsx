@@ -32,7 +32,14 @@ export const metadata: Metadata = {
     keywords: [...site.hero.tags, ...site.jsonLd.knowsAbout],
   }),
   icons: {
-    icon: [{ url: "/images/favicon.svg", type: "image/svg+xml" }],
+    icon: [
+      {
+        url: "/images/favicon-192x192.png",
+        sizes: "192x192",
+        type: "image/png",
+      },
+      { url: "/images/favicon.svg", type: "image/svg+xml" },
+    ],
     apple: [
       {
         url: "/images/favicon-192x192.png",
