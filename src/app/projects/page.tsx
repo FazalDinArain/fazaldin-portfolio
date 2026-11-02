@@ -1,13 +1,15 @@
 import { getAllProjectsMeta } from "@/lib/projects";
 import { ProjectCard } from "@/components/ProjectCard";
 import { ProjectsPlaceholder } from "@/components/ProjectsPlaceholder";
+import { seoMeta } from "@/config/seo-meta";
+import { site } from "@/config/site";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Projects - Case Studies",
-  description:
-    "Detailed case studies showcasing problem-solving approach, technical decisions, and measurable impact across various engineering projects.",
+  title: seoMeta.projectsTitle,
+  description: seoMeta.projectsDescription,
   path: "/projects/",
+  keywords: site.hero.tags,
 });
 
 export default function ProjectsPage() {

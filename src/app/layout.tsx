@@ -22,12 +22,26 @@ const jetbrains = JetBrains_Mono({
   weight: ["400", "500", "600"],
 });
 
-export const metadata: Metadata = buildMetadata({
-  title: site.title,
-  description: site.defaultDescription,
-  path: "/",
-  noSuffix: true,
-});
+export const metadata: Metadata = {
+  ...buildMetadata({
+    title: site.title,
+    description: site.defaultDescription,
+    path: "/",
+    noSuffix: true,
+    ogImageAlt: `${site.name} — ${site.hero.headline}`,
+    keywords: [...site.hero.tags, ...site.jsonLd.knowsAbout],
+  }),
+  icons: {
+    icon: [{ url: "/images/favicon.svg", type: "image/svg+xml" }],
+    apple: [
+      {
+        url: "/images/favicon-192x192.png",
+        sizes: "192x192",
+        type: "image/png",
+      },
+    ],
+  },
+};
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
@@ -35,7 +49,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <html lang="en" data-theme="dark" suppressHydrationWarning>
         <head>
           <ThemeScript />
-          <link rel="icon" href="/images/favicon.svg" type="image/svg+xml" />
           <meta name="theme-color" content={themeMeta.themeColor} />
         </head>
         <body className={`${inter.variable} ${jetbrains.variable}`}>

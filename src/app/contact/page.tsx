@@ -2,13 +2,14 @@ import { ContactChannelIcon } from "@/components/ContactChannelIcon";
 import { ContactForm } from "@/components/ContactForm";
 import { site } from "@/config/site";
 import { hrefDisplay } from "@/lib/href-display";
+import { seoMeta } from "@/config/seo-meta";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Contact - Get in Touch",
-  description:
-    "Get in touch to discuss opportunities, collaborations, or technical challenges.",
+  title: seoMeta.contactTitle,
+  description: seoMeta.contactDescription,
   path: "/contact/",
+  keywords: ["contact", "hire software engineer", "Laravel", "NestJS"],
 });
 
 const contactChannels = [

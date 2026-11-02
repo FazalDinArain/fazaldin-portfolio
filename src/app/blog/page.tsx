@@ -1,11 +1,12 @@
+import { seoMeta } from "@/config/seo-meta";
 import { buildMetadata } from "@/lib/seo";
 import { BlogListing } from "@/components/BlogListing";
 
 export const metadata = buildMetadata({
-  title: "Blog - Technical Articles & Insights",
-  description:
-    "Technical articles, insights, and lessons learned from building web applications with Laravel and integrating AI-powered features.",
+  title: seoMeta.blogTitle,
+  description: seoMeta.blogDescription,
   path: "/blog/",
+  keywords: ["Laravel", "REST APIs", "React", "Next.js", "web development"],
 });
 
 export default function BlogIndexPage() {

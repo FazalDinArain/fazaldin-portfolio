@@ -1,4 +1,6 @@
 import { about } from "@/config/about";
+import { seoMeta } from "@/config/seo-meta";
+import { site } from "@/config/site";
 import { skillCategories } from "@/config/skills";
 import { buildMetadata } from "@/lib/seo";
 import { ExperienceSection } from "@/components/ExperienceSection";
@@ -6,9 +8,10 @@ import { EducationSection } from "@/components/EducationSection";
 import { GitHubActivity } from "@/components/GitHubActivity";
 
 export const metadata = buildMetadata({
-  title: "About - Background & Skills",
-  description: about.intro[0],
+  title: seoMeta.aboutTitle,
+  description: seoMeta.aboutDescription,
   path: "/about/",
+  keywords: site.jsonLd.knowsAbout,
 });
 
 export default function AboutPage() {

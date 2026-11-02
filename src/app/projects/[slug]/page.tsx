@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import { site } from "@/config/site";
 import { getAllProjectSlugs, getProjectBySlug } from "@/lib/projects";
 import { buildMetadata } from "@/lib/seo";
 import {
@@ -20,6 +21,8 @@ export async function generateMetadata({ params }: Props) {
     title: `${project.title} - Projects`,
     description: project.description,
     path: `/projects/${slug}/`,
+    ogImageAlt: `${project.title} — ${site.name}`,
+    keywords: project.tags,
   });
 }
 

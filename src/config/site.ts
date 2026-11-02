@@ -1,6 +1,8 @@
+import { seoMeta } from "@/config/seo-meta";
+
 export const site = {
   name: "FazalDin",
-  title: "FazalDin - Software Engineer",
+  title: seoMeta.homeTitle,
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://fazaldin.vercel.app",
   email: "fazaldinarain@gmail.com",
   phone: "+923033833081",
@@ -30,6 +32,5 @@ export const site = {
       "Node.js",
     ],
   },
-  defaultDescription:
-    "Software Engineer focused on scalable web applications, RESTful APIs, and backend services with Laravel, NestJS, React, and Next.js.",
+  defaultDescription: seoMeta.homeDescription,
 } as const;

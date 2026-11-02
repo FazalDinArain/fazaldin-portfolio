@@ -1,6 +1,8 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
+import { JsonLd } from "@/components/JsonLd";
 import { getProjectBySlug } from "@/lib/projects";
+import { buildProjectJsonLd } from "@/lib/schema";
 import { extractToc } from "@/lib/toc";
 import { MarkdownContent } from "@/components/MarkdownContent";
 import { TableOfContents } from "@/components/TableOfContents";
@@ -28,12 +30,14 @@ export async function ProjectCaseStudy({ params }: { params: Params }) {
   const toc = extractToc(project.content);
 
   return (
-    <article className="article article--case-study">
+    <>
+      <JsonLd data={buildProjectJsonLd(project)} />
+      <article className="article article--case-study">
       {project.cover ? (
         <div className="article-cover">
           <Image
             src={project.cover}
-            alt=""
+            alt={project.title}
             width={1600}
             height={900}
             priority
@@ -70,6 +74,7 @@ export async function ProjectCaseStudy({ params }: { params: Params }) {
         content={project.content}
         className="article-content case-study-content"
       />
-    </article>
+      </article>
+    </>
   );
 }

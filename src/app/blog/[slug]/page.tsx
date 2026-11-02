@@ -3,7 +3,9 @@ import { Link } from "next-view-transitions";
 import Image from "next/image";
 import { getAllPostSlugs, getPostBySlug, getTotalPages } from "@/lib/posts";
 import { placeholderCoverPath } from "@/lib/paths";
-import { buildMetadata, pageUrl } from "@/lib/seo";
+import { seoMeta } from "@/config/seo-meta";
+import { buildBlogPostingJsonLd } from "@/lib/schema";
+import { buildMetadata } from "@/lib/seo";
 import { formatPostDateLong } from "@/lib/dates";
 import { extractToc } from "@/lib/toc";
 import { BlogListing } from "@/components/BlogListing";
@@ -11,8 +13,6 @@ import { MarkdownContent } from "@/components/MarkdownContent";
 import { TableOfContents } from "@/components/TableOfContents";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { JsonLd } from "@/components/JsonLd";
-import { site } from "@/config/site";
-
 type Props = { params: Promise<{ slug: string }> };
 
 function isBlogPageNumber(slug: string): number | null {
@@ -36,10 +36,10 @@ export async function generateMetadata({ params }: Props) {
   const pageNum = isBlogPageNumber(slug);
   if (pageNum) {
     return buildMetadata({
-      title: `Blog - Technical Articles & Insights - Page ${pageNum}`,
-      description:
-        "Technical articles, insights, and lessons learned from building web applications with Laravel and integrating AI-powered features.",
+      title: `${seoMeta.blogTitle} — Page ${pageNum}`,
+      description: seoMeta.blogDescription,
       path: `/blog/${pageNum}/`,
+      noIndex: pageNum > 1,
     });
   }
   const post = getPostBySlug(slug);
@@ -49,6 +49,12 @@ export async function generateMetadata({ params }: Props) {
     description: post.description,
     path: `/blog/${slug}/`,
     ogType: "article",
+    ogImageAlt: post.title,
+    keywords: post.tags,
+    article: {
+      publishedTime: post.date,
+      tags: post.tags,
+    },
   });
 }
 
@@ -63,16 +69,14 @@ export default async function BlogSlugPage({ params }: Props) {
   if (!post) notFound();
 
   const toc = extractToc(post.content);
-  const articleLd = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    headline: post.title,
+  const articleLd = buildBlogPostingJsonLd({
+    slug,
+    title: post.title,
     description: post.description,
-    datePublished: post.date,
-    author: { "@type": "Person", name: site.name, url: site.url },
-    image: post.cover ? pageUrl(post.cover) : pageUrl(placeholderCoverPath),
-    mainEntityOfPage: pageUrl(`/blog/${slug}/`),
-  };
+    date: post.date,
+    cover: post.cover || placeholderCoverPath,
+    tags: post.tags,
+  });
 
   return (
     <>
@@ -80,7 +84,13 @@ export default async function BlogSlugPage({ params }: Props) {
       <article className="article">
         {post.cover ? (
           <div className="article-cover rounded-lg overflow-hidden mb-10">
-            <Image src={post.cover} alt="" width={800} height={450} priority />
+            <Image
+              src={post.cover}
+              alt={post.title}
+              width={800}
+              height={450}
+              priority
+            />
           </div>
         ) : null}
         <header className="article-header">

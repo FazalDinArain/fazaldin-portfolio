@@ -7,48 +7,16 @@ import { ProjectsPlaceholder } from "@/components/ProjectsPlaceholder";
 // import { PostRow } from "@/components/PostRow";
 import { ArrowLink } from "@/components/ArrowLink";
 import { JsonLd } from "@/components/JsonLd";
+import { buildHomeGraphJsonLd } from "@/lib/schema";
 import { GitHubActivity } from "@/components/GitHubActivity";
 
 export default function HomePage() {
   const featured = getFeaturedProjects();
   // const recent = getRecentPosts(3);
 
-  const websiteLd = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: site.title,
-    description: site.defaultDescription,
-    url: site.url,
-    inLanguage: "en",
-    author: {
-      "@type": "Person",
-      name: site.name,
-      jobTitle: site.jsonLd.jobTitle,
-      url: site.url,
-    },
-  };
-
-  const profileLd = {
-    "@context": "https://schema.org",
-    "@type": "ProfilePage",
-    name: site.title,
-    description: site.defaultDescription,
-    url: site.url,
-    mainEntity: {
-      "@type": "Person",
-      name: site.name,
-      jobTitle: site.jsonLd.jobTitle,
-      url: site.url,
-      sameAs: [site.github, site.linkedin],
-      email: site.email,
-      knowsAbout: site.jsonLd.knowsAbout,
-    },
-  };
-
   return (
     <>
-      <JsonLd data={websiteLd} />
-      <JsonLd data={profileLd} />
+      <JsonLd data={buildHomeGraphJsonLd()} />
       <div className="home-page">
         <section className="hero" aria-label="Introduction">
           <p className="hero-greeting">{site.hero.greeting}</p>
