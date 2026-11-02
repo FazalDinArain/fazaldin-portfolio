@@ -5,9 +5,10 @@ export const alt = site.title;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default function Image() {
+export default async function Image() {
   return OgLayout({
-    title: `${site.hero.greeting} — ${site.hero.headline}`,
+    greeting: site.hero.greeting,
+    title: site.hero.headline,
     subtitle: site.hero.subtitle,
     tags: site.hero.tags,
   });

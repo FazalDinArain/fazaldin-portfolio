@@ -6,7 +6,7 @@ export const alt = `About ${site.name}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default function Image() {
+export default async function Image() {
   return OgLayout({
     title: "About — Background & Skills",
     subtitle: about.intro[0],

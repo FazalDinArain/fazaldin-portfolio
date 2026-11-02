@@ -1,27 +1,49 @@
 import { ImageResponse } from "@vercel/og";
-import { site } from "@/config/site";
 import { themeDark } from "@/config/theme";
 
 export const ogSize = { width: 1200, height: 630 };
 
-function siteHostname(): string {
-  try {
-    return new URL(site.url).hostname.replace(/^www\./, "");
-  } catch {
-    return site.url;
+const ogBorder = "#262626";
+const dotGrid = `radial-gradient(circle, rgba(229, 72, 77, 0.12) 1.5px, transparent 1.5px)`;
+
+type OgFontData = {
+  regular: ArrayBuffer;
+  medium: ArrayBuffer;
+  bold: ArrayBuffer;
+};
+
+let fontsPromise: Promise<OgFontData> | undefined;
+
+async function loadOgFonts(): Promise<OgFontData> {
+  if (!fontsPromise) {
+    fontsPromise = Promise.all([
+      fetch(
+        "https://cdn.jsdelivr.net/fontsource/fonts/jetbrains-mono@latest/latin-400-normal.woff",
+      ).then((res) => res.arrayBuffer()),
+      fetch(
+        "https://cdn.jsdelivr.net/fontsource/fonts/jetbrains-mono@latest/latin-500-normal.woff",
+      ).then((res) => res.arrayBuffer()),
+      fetch(
+        "https://cdn.jsdelivr.net/fontsource/fonts/jetbrains-mono@latest/latin-700-normal.woff",
+      ).then((res) => res.arrayBuffer()),
+    ]).then(([regular, medium, bold]) => ({ regular, medium, bold }));
   }
+  return fontsPromise;
 }
 
-export function OgLayout({
+export async function OgLayout({
+  greeting,
   title,
   subtitle,
   tags,
 }: {
+  greeting?: string;
   title: string;
   subtitle?: string;
   tags?: readonly string[];
 }) {
   const displayTags = tags?.slice(0, 5);
+  const fonts = await loadOgFonts();
 
   return new ImageResponse(
     (
@@ -31,56 +53,41 @@ export function OgLayout({
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-between",
-          padding: "72px 80px",
+          justifyContent: "center",
+          padding: "36px 36px",
           background: themeDark.bg,
+          backgroundImage: dotGrid,
+          backgroundSize: "24px 24px",
           color: themeDark.text,
-          fontFamily: "system-ui, sans-serif",
-          position: "relative",
+          fontFamily: "JetBrains Mono",
         }}
       >
         <div
           style={{
-            position: "absolute",
-            left: 0,
-            top: 0,
-            bottom: 0,
-            width: 6,
-            background: themeDark.accent,
+            display: "flex",
+            flexDirection: "column",
+            width: "100%",
           }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            right: -120,
-            top: -80,
-            width: 420,
-            height: 420,
-            borderRadius: "50%",
-            background: themeDark.accent,
-            opacity: 0.08,
-          }}
-        />
-        <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
+        >
+          {greeting ? (
+            <div
+              style={{
+                fontSize: 30,
+                color: themeDark.accent,
+                marginBottom: 8,
+                fontWeight: 500,
+              }}
+            >
+              {greeting}
+            </div>
+          ) : null}
           <div
             style={{
-              fontSize: 26,
-              color: themeDark.accent,
-              marginBottom: 20,
-              fontWeight: 600,
-              letterSpacing: "0.04em",
-              textTransform: "uppercase",
-            }}
-          >
-            {site.name}
-          </div>
-          <div
-            style={{
-              fontSize: 54,
+              fontSize: greeting ? 42 : 38,
               fontWeight: 700,
               letterSpacing: "-0.03em",
-              lineHeight: 1.12,
-              maxWidth: 980,
+              lineHeight: 1.08,
+              color: "#ffffff",
             }}
           >
             {title}
@@ -88,11 +95,11 @@ export function OgLayout({
           {subtitle ? (
             <div
               style={{
-                fontSize: 26,
+                fontSize: 31,
                 color: themeDark.textSecondary,
-                marginTop: 28,
-                lineHeight: 1.45,
-                maxWidth: 920,
+                marginTop: 14,
+                lineHeight: 1.3,
+                fontWeight: 400,
               }}
             >
               {subtitle.slice(0, 180)}
@@ -103,19 +110,21 @@ export function OgLayout({
               style={{
                 display: "flex",
                 flexWrap: "wrap",
-                gap: 12,
-                marginTop: 36,
+                gap: 10,
+                marginTop: 18,
               }}
             >
               {displayTags.map((tag) => (
                 <div
                   key={tag}
                   style={{
-                    fontSize: 20,
-                    padding: "8px 18px",
-                    borderRadius: 999,
-                    border: `1px solid ${themeDark.textSecondary}`,
+                    fontSize: 23,
+                    padding: "8px 14px",
+                    borderRadius: 4,
+                    border: `1px solid ${ogBorder}`,
+                    background: themeDark.bg,
                     color: themeDark.textSecondary,
+                    fontWeight: 400,
                   }}
                 >
                   {tag}
@@ -124,22 +133,30 @@ export function OgLayout({
             </div>
           ) : null}
         </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            fontSize: 22,
-            color: themeDark.textSecondary,
-            borderTop: `1px solid ${themeDark.textSecondary}33`,
-            paddingTop: 28,
-          }}
-        >
-          <span>{site.jsonLd.jobTitle}</span>
-          <span>{siteHostname()}</span>
-        </div>
       </div>
     ),
-    ogSize,
+    {
+      ...ogSize,
+      fonts: [
+        {
+          name: "JetBrains Mono",
+          data: fonts.regular,
+          weight: 400,
+          style: "normal",
+        },
+        {
+          name: "JetBrains Mono",
+          data: fonts.medium,
+          weight: 500,
+          style: "normal",
+        },
+        {
+          name: "JetBrains Mono",
+          data: fonts.bold,
+          weight: 700,
+          style: "normal",
+        },
+      ],
+    },
   );
 }
