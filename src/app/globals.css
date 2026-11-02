@@ -221,6 +221,7 @@ body {
   }
 
   .site-bottom-nav {
+    display: none;
     border-color: var(--color-border);
     background: var(--color-bg);
     padding-bottom: env(safe-area-inset-bottom, 0px);
@@ -1321,6 +1322,10 @@ body {
 @media (max-width: 768px) {
   .site-brand {
     padding-inline: 1rem;
+  }
+
+  .site-bottom-nav {
+    display: flex;
   }
 
   .nav-end::before {
