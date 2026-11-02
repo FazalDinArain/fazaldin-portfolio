@@ -11,12 +11,12 @@ export const site = {
   cvUrl: "/FazalDinArainCV.pdf",
   hero: {
     greeting: "Hi, I'm FazalDin",
-    headline: "Software Engineer",
+    headline: "Full-Stack Developer",
     subtitle: "I build modern, scalable web applications and RESTful APIs.",
     tags: ["Laravel", "NestJS", "React", "Next.js", "REST APIs"],
   },
   jsonLd: {
-    jobTitle: "Software Engineer",
+    jobTitle: "Full-Stack Developer",
     knowsAbout: [
       "Laravel",
       "NestJS",

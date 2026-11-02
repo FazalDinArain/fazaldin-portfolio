@@ -9,7 +9,7 @@ export const metadata = buildMetadata({
   title: seoMeta.contactTitle,
   description: seoMeta.contactDescription,
   path: "/contact/",
-  keywords: ["contact", "hire software engineer", "Laravel", "NestJS"],
+  keywords: ["contact", "hire full-stack developer", "Laravel", "NestJS"],
 });
 
 const contactChannels = [

@@ -18,17 +18,19 @@ export default function HomePage() {
     <>
       <JsonLd data={buildHomeGraphJsonLd()} />
       <div className="home-page">
-        <section className="hero" aria-label="Introduction">
-          <p className="hero-greeting">{site.hero.greeting}</p>
-          <h1 className="hero-title">{site.hero.headline}</h1>
+        <section className="hero" aria-labelledby="hero-heading">
+          <h1 id="hero-heading" className="hero-heading">
+            <span className="hero-greeting">{site.hero.greeting}</span>
+            <span className="hero-title">{site.hero.headline}</span>
+          </h1>
           <p className="hero-subtitle">{site.hero.subtitle}</p>
-          <div className="hero-tags">
+          <ul className="hero-tags" aria-label="Technologies">
             {site.hero.tags.map((tag) => (
-              <span key={tag} className="tag">
-                {tag}
-              </span>
+              <li key={tag}>
+                <span className="tag">{tag}</span>
+              </li>
             ))}
-          </div>
+          </ul>
           <div className="hero-cta">
             <Link href="/projects/" className="btn-primary">
               View My Work

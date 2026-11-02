@@ -757,34 +757,37 @@ body {
     @apply py-16 pb-20 border-b mb-16;
     border-color: var(--color-border);
   }
+  .hero-heading {
+    @apply m-0 p-0 font-normal;
+  }
   .hero-greeting {
-    @apply text-sm font-medium mb-2;
+    @apply block text-sm font-medium mb-6;
     color: var(--color-accent);
   }
   .hero-title {
-    @apply text-4xl font-bold tracking-tight mb-4 leading-tight;
+    @apply block text-4xl font-bold tracking-tight mb-4 leading-tight;
   }
   .hero-subtitle {
     @apply text-lg leading-relaxed mb-8;
     color: var(--color-text-secondary);
   }
   .hero-tags {
-    @apply flex flex-wrap gap-2 mb-8;
+    @apply flex flex-wrap gap-2 mb-8 list-none m-0 p-0;
   }
   .hero-cta {
     @apply flex gap-4;
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    .hero > .hero-greeting,
-    .hero > .hero-title,
+    .hero > .hero-heading .hero-greeting,
+    .hero > .hero-heading .hero-title,
     .hero > .hero-subtitle {
       animation: heroEnter 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
-    .hero > .hero-greeting {
+    .hero > .hero-heading .hero-greeting {
       animation-delay: 0.05s;
     }
-    .hero > .hero-title {
+    .hero > .hero-heading .hero-title {
       animation-delay: 0.12s;
     }
     .hero > .hero-subtitle {
@@ -793,28 +796,28 @@ body {
     .hero > .hero-tags .tag {
       animation: heroEnter 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
-    .hero > .hero-tags .tag:nth-child(1) {
+    .hero > .hero-tags li:nth-child(1) .tag {
       animation-delay: 0.28s;
     }
-    .hero > .hero-tags .tag:nth-child(2) {
+    .hero > .hero-tags li:nth-child(2) .tag {
       animation-delay: 0.33s;
     }
-    .hero > .hero-tags .tag:nth-child(3) {
+    .hero > .hero-tags li:nth-child(3) .tag {
       animation-delay: 0.38s;
     }
-    .hero > .hero-tags .tag:nth-child(4) {
+    .hero > .hero-tags li:nth-child(4) .tag {
       animation-delay: 0.43s;
     }
-    .hero > .hero-tags .tag:nth-child(5) {
+    .hero > .hero-tags li:nth-child(5) .tag {
       animation-delay: 0.48s;
     }
-    .hero > .hero-tags .tag:nth-child(6) {
+    .hero > .hero-tags li:nth-child(6) .tag {
       animation-delay: 0.53s;
     }
-    .hero > .hero-tags .tag:nth-child(7) {
+    .hero > .hero-tags li:nth-child(7) .tag {
       animation-delay: 0.58s;
     }
-    .hero > .hero-tags .tag:nth-child(8) {
+    .hero > .hero-tags li:nth-child(8) .tag {
       animation-delay: 0.63s;
     }
     .hero > .hero-cta > * {

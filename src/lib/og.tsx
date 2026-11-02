@@ -74,7 +74,7 @@ export async function OgLayout({
               style={{
                 fontSize: 30,
                 color: themeDark.accent,
-                marginBottom: 8,
+                marginBottom: 20,
                 fontWeight: 500,
               }}
             >
@@ -83,7 +83,7 @@ export async function OgLayout({
           ) : null}
           <div
             style={{
-              fontSize: greeting ? 42 : 38,
+              fontSize: greeting ? 34 : 32,
               fontWeight: 700,
               letterSpacing: "-0.03em",
               lineHeight: 1.08,
@@ -97,7 +97,7 @@ export async function OgLayout({
               style={{
                 fontSize: 31,
                 color: themeDark.textSecondary,
-                marginTop: 14,
+                marginTop: 24,
                 lineHeight: 1.3,
                 fontWeight: 400,
               }}
@@ -111,7 +111,7 @@ export async function OgLayout({
                 display: "flex",
                 flexWrap: "wrap",
                 gap: 10,
-                marginTop: 18,
+                marginTop: 28,
               }}
             >
               {displayTags.map((tag) => (
