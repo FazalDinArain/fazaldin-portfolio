@@ -14,6 +14,9 @@
   --color-accent-hover: #f2555a;
   --color-accent-muted: rgba(229, 72, 77, 0.15);
   --color-accent-glow: rgba(229, 72, 77, 0.25);
+  --color-success: #4ade80;
+  --color-success-muted: rgba(74, 222, 128, 0.1);
+  --color-success-border: rgba(74, 222, 128, 0.35);
   --space-xs: 0.25rem;
   --space-sm: 0.5rem;
   --space-md: 1rem;
@@ -45,6 +48,9 @@
   --color-accent: #e5484d;
   --color-accent-hover: #dc3d43;
   --color-accent-muted: rgba(229, 72, 77, 0.1);
+  --color-success: #16a34a;
+  --color-success-muted: rgba(22, 163, 74, 0.08);
+  --color-success-border: rgba(22, 163, 74, 0.28);
   --github-contrib-0: #ebedf0;
   --github-contrib-1: #9be9a8;
   --github-contrib-2: #40c463;
@@ -1262,7 +1268,7 @@ body {
     border-color: var(--color-border);
   }
   .form-stack {
-    @apply flex flex-col gap-5;
+    @apply relative flex flex-col gap-5;
   }
   .form-field {
     @apply flex flex-col gap-2;
@@ -1293,8 +1299,37 @@ body {
     @apply text-sm leading-relaxed m-0;
     color: var(--color-text-muted);
   }
-  .form-stack .btn-primary.btn-with-icon {
-    @apply w-fit max-w-none border-0 cursor-pointer mt-1 ml-auto;
+  .form-status {
+    @apply text-sm leading-relaxed m-0 rounded-md px-3 py-2.5 border font-medium;
+  }
+  .form-status--ok {
+    color: var(--color-success);
+    border-color: var(--color-success-border);
+    background: var(--color-success-muted);
+  }
+  .form-status--error {
+    color: var(--color-accent);
+    border-color: var(--color-accent-muted);
+    background: var(--color-bg);
+  }
+  .hp-field {
+    @apply absolute overflow-hidden border-0 p-0;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .form-stack .contact-form-submit {
+    @apply flex w-full max-w-none cursor-pointer mt-1 justify-center items-center;
+    @apply rounded-md px-3 py-2.5 text-[0.9375rem] font-semibold leading-normal;
+    min-height: calc(0.9375rem * 1.5 + 1.25rem + 2px);
+    box-sizing: border-box;
+  }
+  @media (min-width: 769px) {
+    .form-stack .contact-form-submit {
+      @apply w-fit ml-auto;
+    }
   }
   .form-stack .btn-primary:disabled {
     @apply opacity-60 cursor-not-allowed;
@@ -1364,9 +1399,6 @@ body {
   .btn-primary,
   .btn-secondary {
     @apply w-full text-center;
-  }
-  .form-stack .btn-primary.btn-with-icon {
-    @apply w-fit ml-auto;
   }
   .footer-container {
     @apply flex-col text-center;

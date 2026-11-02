@@ -1,19 +1,40 @@
 "use client";
 
-import { useState } from "react";
+import { useActionState } from "react";
+import {
+  submitContactForm,
+  type ContactFormState,
+} from "@/app/contact/actions";
+
+const initialState: ContactFormState = { ok: false, message: "" };
 
 export function ContactForm() {
-  const [status, setStatus] = useState<"idle" | "pending">("idle");
-
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setStatus("pending");
-    // SMTP / server action will be wired here later.
-    setStatus("idle");
-  }
+  const [state, formAction, pending] = useActionState(
+    submitContactForm,
+    initialState,
+  );
 
   return (
-    <form className="form-stack" onSubmit={handleSubmit} noValidate>
+    <form className="form-stack" action={formAction} noValidate>
+      <input
+        className="hp-field"
+        name="website"
+        type="text"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        defaultValue=""
+      />
+
+      {state.message ? (
+        <p
+          role="status"
+          className={state.ok ? "form-status form-status--ok" : "form-status form-status--error"}
+        >
+          {state.message}
+        </p>
+      ) : null}
+
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div className="form-field">
           <label htmlFor="contact-name">Name</label>
@@ -23,6 +44,7 @@ export function ContactForm() {
             type="text"
             autoComplete="name"
             required
+            disabled={pending}
           />
         </div>
         <div className="form-field">
@@ -33,6 +55,7 @@ export function ContactForm() {
             type="email"
             autoComplete="email"
             required
+            disabled={pending}
           />
         </div>
       </div>
@@ -43,14 +66,15 @@ export function ContactForm() {
           name="message"
           rows={6}
           required
+          disabled={pending}
         />
       </div>
       <button
         type="submit"
-        className="btn-primary btn-with-icon"
-        disabled={status === "pending"}
+        className="btn-primary btn-with-icon contact-form-submit"
+        disabled={pending}
       >
-        {status === "pending" ? "Sending…" : "Send message"}
+        {pending ? "Sending…" : "Send message"}
         <svg
           width="16"
           height="16"
