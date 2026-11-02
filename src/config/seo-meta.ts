@@ -1,8 +1,8 @@
 /** Page titles & descriptions for metadata (keep descriptions ~150–160 characters). */
 export const seoMeta = {
-  homeTitle: "FazalDin | Full-Stack Developer — Laravel, NestJS & React",
+  homeTitle: "FazalDin — Full-Stack Developer",
   homeDescription:
-    "Full-Stack Developer portfolio: scalable web apps, REST APIs, and backend services with Laravel, NestJS, React, and Next.js. Projects and case studies.",
+    "I build complete web applications—from the pages people use to the systems behind them, using modern JavaScript and PHP frameworks.",
   aboutTitle: "About — Skills & Experience",
   aboutDescription:
     "About FazalDin, a Full-Stack Developer focused on scalable web applications, RESTful APIs, React, Next.js, Laravel, NestJS, and database design.",
