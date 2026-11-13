@@ -142,16 +142,25 @@ body {
   }
 }
 
+::view-transition {
+  pointer-events: none;
+}
+
 ::view-transition-old(root),
 ::view-transition-new(root) {
+  animation: none;
+}
+
+::view-transition-old(.page-fade),
+::view-transition-new(.page-fade) {
   background-color: var(--color-bg);
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  ::view-transition-old(root) {
+  ::view-transition-old(.page-fade) {
     animation: astroFadeOut 0.2s ease forwards;
   }
-  ::view-transition-new(root) {
+  ::view-transition-new(.page-fade) {
     animation: astroFadeIn 0.2s ease forwards;
   }
 }

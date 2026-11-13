@@ -1,4 +1,4 @@
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 import { site } from "@/config/site";
 import { getFeaturedProjects } from "@/lib/projects";
 // import { getRecentPosts } from "@/lib/posts";

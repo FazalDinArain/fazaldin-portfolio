@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
-import { ViewTransitions } from "next-view-transitions";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteBottomNav } from "@/components/SiteBottomNav";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -52,24 +51,22 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <ViewTransitions>
-      <html lang="en" data-theme="dark" suppressHydrationWarning>
-        <head>
-          <ThemeScript />
-          <meta name="theme-color" content={themeMeta.themeColor} />
-        </head>
-        <body className={`${inter.variable} ${jetbrains.variable}`}>
-          <a href="#main-content" className="skip-to-content">
-            Skip to main content
-          </a>
-          <SiteHeader />
-          <main id="main-content" className="flex-1">
-            {children}
-          </main>
-          <SiteFooter />
-          <SiteBottomNav />
-        </body>
-      </html>
-    </ViewTransitions>
+    <html lang="en" data-theme="dark" suppressHydrationWarning>
+      <head>
+        <ThemeScript />
+        <meta name="theme-color" content={themeMeta.themeColor} />
+      </head>
+      <body className={`${inter.variable} ${jetbrains.variable}`}>
+        <a href="#main-content" className="skip-to-content">
+          Skip to main content
+        </a>
+        <SiteHeader />
+        <main id="main-content" className="flex-1">
+          {children}
+        </main>
+        <SiteFooter />
+        <SiteBottomNav />
+      </body>
+    </html>
   );
 }

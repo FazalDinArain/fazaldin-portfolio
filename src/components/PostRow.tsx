@@ -1,4 +1,4 @@
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 import type { PostMeta } from "@/lib/posts";
 import { formatPostDateShort } from "@/lib/dates";
 

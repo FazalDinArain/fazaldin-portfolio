@@ -1,6 +1,6 @@
 "use client";
 
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { mainNavLinks, isNavActive } from "@/config/nav";
 import { NavIcon } from "@/components/NavIcon";
