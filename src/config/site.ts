@@ -1,7 +1,7 @@
 import { seoMeta } from "@/config/seo-meta";
 
 export const site = {
-  name: "FazalDin",
+  name: "FazalDin Arain",
   title: seoMeta.homeTitle,
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://fazaldin.vercel.app",
   email: "fazaldinarain@gmail.com",
@@ -10,7 +10,7 @@ export const site = {
   linkedin: "https://linkedin.com/in/fazaldin-arain",
   cvUrl: "/FazalDinArainCV.pdf",
   hero: {
-    greeting: "Hi, I'm FazalDin",
+    greeting: "Hi, I'm FazalDin Arain",
     headline: "Full-Stack Developer",
     subtitle: "I build modern, scalable web applications and RESTful APIs.",
     tags: ["Laravel", "NestJS", "React", "Next.js", "REST APIs"],

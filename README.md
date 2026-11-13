@@ -1,6 +1,6 @@
-# FazalDin Portfolio
+# FazalDin Arain Portfolio
 
-Portfolio site for **FazalDin**, built with **Next.js**, **Tailwind CSS**, and markdown/MDX content.
+Portfolio site for **FazalDin Arain**, built with **Next.js**, **Tailwind CSS**, and markdown/MDX content.
 
 ## Setup
 
