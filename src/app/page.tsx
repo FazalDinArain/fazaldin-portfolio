@@ -8,6 +8,7 @@ import { ProjectsPlaceholder } from "@/components/ProjectsPlaceholder";
 import { ArrowLink } from "@/components/ArrowLink";
 import { JsonLd } from "@/components/JsonLd";
 import { buildHomeGraphJsonLd } from "@/lib/schema";
+import { GitHubActivity } from "@/components/GitHubActivity";
 export default function HomePage() {
   const featured = getFeaturedProjects();
   // const recent = getRecentPosts(3);
@@ -38,10 +39,10 @@ export default function HomePage() {
             </Link>
           </div>
         </section>
-        <section
-          className="featured-projects"
-          aria-label="Featured projects"
-        >
+
+        <GitHubActivity />
+
+        <section className="featured-projects" aria-label="Featured projects">
           <div className="section-header">
             <h2 className="section-heading">Featured Projects</h2>
             <ArrowLink href="/projects/" variant="muted">

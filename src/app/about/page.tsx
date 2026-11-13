@@ -5,7 +5,6 @@ import { skillCategories } from "@/config/skills";
 import { buildMetadata } from "@/lib/seo";
 import { ExperienceSection } from "@/components/ExperienceSection";
 import { EducationSection } from "@/components/EducationSection";
-import { GitHubActivity } from "@/components/GitHubActivity";
 
 export const metadata = buildMetadata({
   title: seoMeta.aboutTitle,
@@ -51,8 +50,6 @@ export default function AboutPage() {
           ))}
         </div>
       </section>
-
-      <GitHubActivity />
 
       <ExperienceSection />
       <EducationSection />
