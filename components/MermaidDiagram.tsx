@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import {
   getMermaidThemeVariables,
   getSiteTheme,
@@ -17,22 +17,23 @@ const flowchartConfig = {
   subGraphTitleMargin: { top: 16, bottom: 28 },
 };
 
+function subscribeTheme(onStoreChange: () => void) {
+  const obs = new MutationObserver(onStoreChange);
+  obs.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["data-theme"],
+  });
+  return () => obs.disconnect();
+}
+
 export function MermaidDiagram({ chart }: { chart: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const [svg, setSvg] = useState<string>("");
-  const [theme, setTheme] = useState<SiteTheme>("dark");
-
-  useEffect(() => {
-    setTheme(getSiteTheme());
-    const obs = new MutationObserver(() => {
-      setTheme(getSiteTheme());
-    });
-    obs.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["data-theme"],
-    });
-    return () => obs.disconnect();
-  }, []);
+  const theme = useSyncExternalStore(
+    subscribeTheme,
+    getSiteTheme,
+    (): SiteTheme => "dark",
+  );
 
   useEffect(() => {
     let cancelled = false;

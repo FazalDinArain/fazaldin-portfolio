@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -13,6 +14,7 @@ import { MarkdownContent } from "@/components/MarkdownContent";
 import { TableOfContents } from "@/components/TableOfContents";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { JsonLd } from "@/components/JsonLd";
+
 type Props = { params: Promise<{ slug: string }> };
 
 function isBlogPageNumber(slug: string): number | null {
@@ -58,7 +60,26 @@ export async function generateMetadata({ params }: Props) {
   });
 }
 
-export default async function BlogSlugPage({ params }: Props) {
+function BlogSlugFallback() {
+  return (
+    <article className="article" aria-busy="true">
+      <header className="article-header">
+        <div className="h-10 w-full max-w-xl rounded mb-4 bg-[var(--color-bg-elevated)]" />
+        <div className="h-5 w-48 rounded bg-[var(--color-bg-elevated)]" />
+      </header>
+    </article>
+  );
+}
+
+export default function BlogSlugPage({ params }: Props) {
+  return (
+    <Suspense fallback={<BlogSlugFallback />}>
+      <BlogSlugContent params={params} />
+    </Suspense>
+  );
+}
+
+async function BlogSlugContent({ params }: Props) {
   const { slug } = await params;
   const pageNum = isBlogPageNumber(slug);
   if (pageNum) {

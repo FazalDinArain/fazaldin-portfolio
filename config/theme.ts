@@ -1,6 +1,6 @@
 /**
  * Hex colors for surfaces that cannot read CSS variables (OG images, meta theme-color).
- * Keep in sync with `:root` in src/app/globals.css when changing the default dark theme.
+ * Keep in sync with `:root` in app/globals.css when changing the default dark theme.
  * theme-color meta in layout.tsx uses themeMeta.themeColor below.
  */
 export const themeDark = {

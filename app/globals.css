@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* UI theme tokens — OG/meta copies: src/config/theme.ts + public/site.webmanifest */
+/* UI theme tokens — OG/meta copies: config/theme.ts + public/site.webmanifest */
 :root {
   --color-bg: #0a0a0a;
   --color-bg-secondary: #111111;
