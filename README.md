@@ -41,7 +41,6 @@ For production, set `NEXT_PUBLIC_SITE_URL` to your deployment URL (for example `
 ## Features
 
 - Dark/light theme (`data-theme` + localStorage)
-- View transitions (`next-view-transitions` + fade CSS)
 - Blog pagination (5 posts per page)
 - Dynamic Open Graph images
 - Mobile-responsive layout (768px / 640px breakpoints)

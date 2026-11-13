@@ -11,7 +11,6 @@ export function SiteBottomNav() {
   return (
     <nav
       className="site-bottom-nav fixed inset-x-0 bottom-0 z-[100] border-t"
-      style={{ viewTransitionName: "site-bottom-nav" }}
       aria-label="Main navigation"
     >
       <ul className="bottom-nav-list">
