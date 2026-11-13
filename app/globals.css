@@ -151,6 +151,18 @@ body {
   animation: none;
 }
 
+::view-transition-group(site-bottom-nav) {
+  animation: none;
+  z-index: 100;
+}
+::view-transition-old(site-bottom-nav) {
+  display: none;
+}
+::view-transition-new(site-bottom-nav) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
 ::view-transition-old(.page-fade),
 ::view-transition-new(.page-fade) {
   background-color: var(--color-bg);
